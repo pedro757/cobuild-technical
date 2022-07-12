@@ -34,6 +34,8 @@
     "typescript": "4.7.4"
   },
   "eslintConfig": {
-    "extends": ["next/core-web-vitals"]
+    "extends": [
+      "next/core-web-vitals"
+    ]
   }
 }
