@@ -12,10 +12,10 @@ datasource db {
 }
 
 model Task {
-    id          String  @id @default(cuid())
-    name        String
-    description String
-    done        Boolean @default(false)
+    id      String  @id @default(cuid())
+    name    String
+    content String
+    done    Boolean @default(false)
 }
 
 // Necessary for Next auth
