@@ -16,7 +16,7 @@ interface Task {
 
 export default function Task({ task }: { task: Task }) {
   const utils = trpc.useContext();
-  const mutation = trpc.useMutation("task.remove", {
+  const removeMutation = trpc.useMutation("task.remove", {
     onSuccess() {
       utils.invalidateQueries(["task.getAll"]);
     },
@@ -29,8 +29,8 @@ export default function Task({ task }: { task: Task }) {
           {task.name}
         </Typography>
         <Typography variant="body2">{task.content}</Typography>
-        {mutation.error && (
-          <p>Something went wrong! {mutation.error.message}</p>
+        {removeMutation.error && (
+          <p>Something went wrong! {removeMutation.error.message}</p>
         )}
       </CardContent>
       <CardActions>
@@ -38,9 +38,9 @@ export default function Task({ task }: { task: Task }) {
           Mark as Done
         </Button>
         <Button
-          disabled={mutation.isLoading}
+          disabled={removeMutation.isLoading}
           size="small"
-          onClick={() => mutation.mutate({ id: task.id })}
+          onClick={() => removeMutation.mutate({ id: task.id })}
           startIcon={<DeleteIcon />}
         >
           Delete Task
