@@ -28,7 +28,7 @@ export default function ButtonAppBar() {
           </Typography>
           {session &&
             <Typography variant="h6" component="div">
-              <Link href="/createTask">
+              <Link href="/task/create">
                 <div style={{ display: "flex", cursor: "pointer" }}>
                   <AddIcon sx={{ marginRight: 1, marginTop: "4px" }} />
                   create
