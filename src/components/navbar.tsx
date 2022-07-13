@@ -26,22 +26,26 @@ export default function ButtonAppBar() {
               </div>
             </Link>
           </Typography>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link href="/createTask">
-              <div style={{ display: "flex", cursor: "pointer" }}>
-                <AddIcon sx={{ marginRight: 1, marginTop: "4px" }} />
-                create
-              </div>
-            </Link>
-          </Typography>
+          {session &&
+            <Typography variant="h6" component="div">
+              <Link href="/createTask">
+                <div style={{ display: "flex", cursor: "pointer" }}>
+                  <AddIcon sx={{ marginRight: 1, marginTop: "4px" }} />
+                  create
+                </div>
+              </Link>
+            </Typography>
+          }
+          <div style={{display: "flex", flexDirection: "row-reverse", flexGrow: 1}}>
           {session ? (
-            <Button
-              variant="contained"
-              onClick={() => signOut()}
-              endIcon={<LogoutIcon />}
-            >
-              Sign Out
-            </Button>
+              <Button
+                sx={{justifyContent: "flex-end"}}
+                variant="contained"
+                onClick={() => signOut()}
+                endIcon={<LogoutIcon />}
+              >
+                Sign Out
+              </Button>
           ) : (
             <Button
               variant="contained"
@@ -51,6 +55,7 @@ export default function ButtonAppBar() {
               Sign In
             </Button>
           )}
+          </div>
         </Toolbar>
       </AppBar>
     </Box>

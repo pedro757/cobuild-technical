@@ -6,9 +6,11 @@ import Button from "@mui/material/Button";
 import ButtonAppBar from "../components/navbar";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import { trpc } from "../utils/trpc";
 
 const CreateTask: NextPage = () => {
+  const { data: session } = useSession();
   const [form, setForm] = useState({ name: "", content: "" });
   const router = useRouter();
   const mutation = trpc.useMutation("task.create", {
@@ -16,6 +18,17 @@ const CreateTask: NextPage = () => {
       router.push("/");
     },
   });
+
+  if (!session) {
+    return (
+      <>
+        <ButtonAppBar />
+        <Container maxWidth="md">
+          <div>Please Log In</div>
+        </Container>
+      </>
+    );
+  }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

@@ -4,9 +4,22 @@ import ButtonAppBar from "../components/navbar";
 import Task from "../components/task";
 import Container from "@mui/material/Container";
 import { trpc } from "../utils/trpc";
+import { useSession } from "next-auth/react";
 
 const Home: NextPage = () => {
+  const { data: session } = useSession();
   const { data, isLoading } = trpc.useQuery(["task.getAll"]);
+
+  if (!session) {
+    return (
+      <>
+        <ButtonAppBar />
+        <Container maxWidth="md">
+          <div>Please Log In</div>
+        </Container>
+      </>
+    );
+  }
 
   return (
     <>
