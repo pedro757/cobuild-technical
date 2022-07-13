@@ -1,11 +1,12 @@
-import * as React from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
+import DoneIcon from "@mui/icons-material/Done";
+import EditIcon from "@mui/icons-material/Edit";
+import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import DoneIcon from "@mui/icons-material/Done";
-import DeleteIcon from "@mui/icons-material/Delete";
+import Link from "next/link";
 import { trpc } from "../utils/trpc";
 
 interface Task {
@@ -45,6 +46,16 @@ export default function Task({ task }: { task: Task }) {
         >
           Delete Task
         </Button>
+        <Link
+          href={{
+            pathname: "/task/[id]",
+            query: { id: task.id },
+          }}
+        >
+          <Button size="small" startIcon={<EditIcon />}>
+            Edit Task
+          </Button>
+        </Link>
       </CardActions>
     </Card>
   );
