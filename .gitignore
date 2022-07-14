@@ -37,3 +37,6 @@ yarn-error.log*
 
 # prisma
 *.sqlite
+
+# cypress
+cypress.env.json
