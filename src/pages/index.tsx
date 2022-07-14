@@ -2,6 +2,7 @@ import Container from "@mui/material/Container";
 import type { NextPage } from "next";
 import { useSession } from "next-auth/react";
 import Head from "next/head";
+import SigninAlert from "../components/signinAlert";
 import ButtonAppBar from "../components/navbar";
 import Task from "../components/task";
 import { trpc } from "../utils/trpc";
@@ -15,7 +16,7 @@ const Home: NextPage = () => {
       <>
         <ButtonAppBar />
         <Container maxWidth="md">
-          <div>Please Log In</div>
+          <SigninAlert />
         </Container>
       </>
     );

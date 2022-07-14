@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { ChangeEvent, FormEvent, useState } from "react";
+import SigninAlert from "../../components/signinAlert";
 import ButtonAppBar from "../../components/navbar";
 import { trpc } from "../../utils/trpc";
 
@@ -24,7 +25,7 @@ const CreateTask: NextPage = () => {
       <>
         <ButtonAppBar />
         <Container maxWidth="md">
-          <div>Please Log In</div>
+          <SigninAlert />
         </Container>
       </>
     );
