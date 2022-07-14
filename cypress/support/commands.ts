@@ -16,6 +16,8 @@ Cypress.Commands.add('login', () => {
   cy.setCookie("next-auth.session-token", Cypress.env("COOKIE_TOKEN"));
 	Cypress.Cookies.preserveOnce("next-auth.session-token");
 })
+
+export {}
 //
 //
 // -- This is a child command --
