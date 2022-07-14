@@ -1,3 +1,4 @@
+import CloseIcon from "@mui/icons-material/Close";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DoneIcon from "@mui/icons-material/Done";
 import EditIcon from "@mui/icons-material/Edit";
@@ -6,18 +7,19 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import { Task as TaskType } from "@prisma/client";
 import Link from "next/link";
 import { trpc } from "../utils/trpc";
 
-interface Task {
-  id: string;
-  name: string;
-  content: string;
-}
-
-export default function Task({ task }: { task: Task }) {
+export default function Task({ task }: { task: TaskType }) {
   const utils = trpc.useContext();
   const removeMutation = trpc.useMutation("task.remove", {
+    onSuccess() {
+      utils.invalidateQueries(["task.getAll"]);
+    },
+  });
+
+  const markAsDoneMutation = trpc.useMutation("task.update", {
     onSuccess() {
       utils.invalidateQueries(["task.getAll"]);
     },
@@ -35,8 +37,14 @@ export default function Task({ task }: { task: Task }) {
         )}
       </CardContent>
       <CardActions>
-        <Button size="small" startIcon={<DoneIcon />}>
-          Mark as Done
+        <Button
+          size="small"
+          onClick={() =>
+            markAsDoneMutation.mutate({ id: task.id, done: !task.done })
+          }
+          startIcon={task.done ? <CloseIcon /> : <DoneIcon />}
+        >
+          Mark as {task.done ? "Undone" : "Done"}
         </Button>
         <Button
           disabled={removeMutation.isLoading}

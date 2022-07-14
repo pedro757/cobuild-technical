@@ -19,9 +19,9 @@ export const taskRouter = createRouter()
   })
   .mutation("update", {
     input: z.object({
-      id: z.string().optional(),
-      name: z.string(),
-      content: z.string(),
+      id: z.string(),
+      name: z.string().optional(),
+      content: z.string().optional(),
       done: z.boolean().optional(),
     }),
     async resolve({ ctx, input }) {
