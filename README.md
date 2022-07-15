@@ -38,6 +38,8 @@ This app uses the [t3 stack](https://init.tips/) which basically means:
 
 1. Sign in and go to the chrome devtools `(CTRL+SHIFT+I)`, then go to the application panel, in the cookies section copy the
   value of `next-auth.session-token`
+  ![image](https://user-images.githubusercontent.com/30637426/179214288-52040efb-041c-4970-95ea-0096cec094c1.png)
+
 1. Create a `cypress.env.json` file and paste the value of `next-auth.session-token` in the `COOKIE_TOKEN` variable:
 
 ```json
