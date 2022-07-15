@@ -38,6 +38,7 @@ This app uses the [t3 stack](https://init.tips/) which basically means:
 
 1. Sign in and go to the chrome devtools `(CTRL+SHIFT+I)`, then go to the application panel, in the cookies section copy the
   value of `next-auth.session-token`
+  
   ![image](https://user-images.githubusercontent.com/30637426/179214288-52040efb-041c-4970-95ea-0096cec094c1.png)
 
 1. Create a `cypress.env.json` file and paste the value of `next-auth.session-token` in the `COOKIE_TOKEN` variable:
@@ -47,3 +48,10 @@ This app uses the [t3 stack](https://init.tips/) which basically means:
   "COOKIE_TOKEN": "<YOUR_COOKIE_TOKEN>"
 }
 ```
+
+# How to test cloud function?
+1. Sign in and go to the chrome devtools `(CTRL+SHIFT+I)`, then go to the application panel, in the cookies section copy the value of `next-auth.session-token`
+
+![image](https://user-images.githubusercontent.com/30637426/179214288-52040efb-041c-4970-95ea-0096cec094c1.png)
+
+2. Replace the values between angle brackets and run `curl --cookie "next-auth.session-token=<YOUR_COOKIE>" -X PUT -H "Content-Type: application/json" -d '{"id":"<TASK_ID>", "done": true}' http://localhost:3000/api/tasks`
